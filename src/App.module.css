@@ -13,7 +13,11 @@
             width: min(100% - 56px, 1440px);
             margin: 0 auto;
             padding: 27px 0 40px;
-            flex: 1 0 auto;
+            flex: 0 0 auto;
+        }
+
+        > :global(footer) {
+            margin-top: auto;
         }
     }
 
