@@ -1,0 +1,60 @@
+.form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px 13px;
+
+    label {
+        display: grid;
+        align-content: start;
+        gap: 6px;
+        color: #5b5058;
+        font-size: 13px;
+        font-weight: 650;
+    }
+
+    .fullField {
+        grid-column: 1 / -1;
+    }
+
+    input,
+    select,
+    textarea {
+        width: 100%;
+        min-height: 42px;
+        padding: 8px 10px;
+        border: 1px solid #ded5cd;
+        border-radius: 8px;
+        outline: 0;
+        color: var(--color-ink);
+        background: #fff;
+        font-size: 14px;
+
+        &:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgb(107 60 82 / 9%);
+        }
+
+        &::placeholder {
+            color: #9b9097;
+        }
+    }
+
+    textarea {
+        min-height: 90px;
+        line-height: 1.45;
+    }
+
+    .fieldError {
+        color: #a43f44;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    @media (max-width: 520px) {
+        grid-template-columns: minmax(0, 1fr);
+
+        .fullField {
+            grid-column: auto;
+        }
+    }
+}
