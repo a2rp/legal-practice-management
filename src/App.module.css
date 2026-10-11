@@ -1,0 +1,38 @@
+.app {
+    display: grid;
+    min-height: 100vh;
+    padding: 32px;
+    place-items: center;
+
+    .card {
+        width: min(100%, 620px);
+        padding: 48px;
+        border: 1px solid var(--color-border);
+        border-radius: 16px;
+        background: var(--color-surface);
+        box-shadow: var(--shadow-card);
+
+        .brand {
+            margin-bottom: 18px;
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        h1 {
+            color: var(--color-ink);
+            font-family: var(--font-serif);
+            font-size: clamp(32px, 5vw, 48px);
+            line-height: 1.12;
+        }
+
+        .description {
+            margin-top: 14px;
+            color: var(--color-muted);
+            font-size: 16px;
+        }
+
+        @media (max-width: 600px) {
+            padding: 28px;
+        }
+    }
+}
