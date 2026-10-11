@@ -8,6 +8,13 @@ import styles from "./styles.module.css";
 const eventKinds = ["Court", "Client call", "Client meeting", "Filing deadline", "Negotiation", "Internal"];
 const dateKey = (date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 const today = () => dateKey(new Date());
+const timeValue = (value = "") => {
+    const match = value.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
+    if (!match) return 0;
+    let hours = Number(match[1]) % 12;
+    if (match[3].toUpperCase() === "PM") hours += 12;
+    return hours * 60 + Number(match[2]);
+};
 
 const EventForm = ({ event, matters, initialDate, initialMatterId, onSave }) => {
     const [form, setForm] = useState(() => event ? { ...event } : {
@@ -104,7 +111,7 @@ const CalendarPage = ({ matters, events, onSaveEvent, onUpdateEvent, onDeleteEve
     const filteredEvents = useMemo(() => events.filter((event) =>
         (matterFilter === "all" || event.matterId === matterFilter)
         && (kindFilter === "All types" || event.kind === kindFilter)), [events, matterFilter, kindFilter]);
-    const selectedEvents = filteredEvents.filter((event) => event.date === selectedDate).sort((a, b) => a.time.localeCompare(b.time));
+    const selectedEvents = filteredEvents.filter((event) => event.date === selectedDate).sort((a, b) => timeValue(a.time) - timeValue(b.time));
     const monthEvents = filteredEvents.filter((event) => event.date.startsWith(`${monthDate.getFullYear()}-${String(monthDate.getMonth() + 1).padStart(2, "0")}`));
     const monthLabel = new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(monthDate);
 
