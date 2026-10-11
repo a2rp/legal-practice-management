@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
     FiCalendar,
     FiClock,
@@ -6,6 +7,7 @@ import {
     FiUsers,
 } from "react-icons/fi";
 import { NavLink, useLocation } from "react-router-dom";
+import { formatDate } from "../../utils/formatters";
 import styles from "./styles.module.css";
 
 const navigation = [
@@ -16,8 +18,17 @@ const navigation = [
     { label: "Clients", to: "/clients", icon: <FiUsers aria-hidden="true" /> },
 ];
 
-const Sidebar = ({ isOpen, onClose, matterCount = 0 }) => {
+const Sidebar = ({ isOpen, onClose, matterCount = 0, nextEvent }) => {
     const location = useLocation();
+
+    useEffect(() => {
+        if (!isOpen) return undefined;
+        const closeOnEscape = (event) => {
+            if (event.key === "Escape") onClose();
+        };
+        document.addEventListener("keydown", closeOnEscape);
+        return () => document.removeEventListener("keydown", closeOnEscape);
+    }, [isOpen, onClose]);
 
     return (
         <>
@@ -28,7 +39,7 @@ const Sidebar = ({ isOpen, onClose, matterCount = 0 }) => {
                 tabIndex={isOpen ? 0 : -1}
                 type="button"
             />
-            <aside aria-label="Practice workspace" className={`${styles.sidebar} ${isOpen ? styles.sidebarOpen : ""}`}>
+            <aside aria-label="Practice workspace" className={`${styles.sidebar} ${isOpen ? styles.sidebarOpen : ""}`} id="practice-sidebar">
                 <NavLink aria-label="Matterline home" className={styles.brand} onClick={onClose} to="/" end>
                     <span aria-hidden="true" className={styles.brandMark}><FiFolder /></span>
                     <span>Matterline<span className={styles.brandDot}>.</span></span>
@@ -70,8 +81,8 @@ const Sidebar = ({ isOpen, onClose, matterCount = 0 }) => {
                     <div className={styles.weeklyCard}>
                         <span className={styles.weeklyIcon}><FiCalendar aria-hidden="true" /></span>
                         <span>
-                            <strong>Next court date</strong>
-                            <small>Motion hearing · 10:30 am</small>
+                            <strong>{nextEvent?.title ?? "No upcoming date"}</strong>
+                            <small>{nextEvent ? `${formatDate(nextEvent.date, { weekday: "short", month: "short", day: "numeric" })} · ${nextEvent.time}` : "Schedule a hearing or meeting"}</small>
                         </span>
                     </div>
                     <div className={styles.userProfile}>
