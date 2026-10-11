@@ -1,0 +1,20 @@
+.loading {
+    display: grid;
+    min-height: 280px;
+    place-items: center;
+
+    .spinner {
+        width: 38px;
+        height: 38px;
+        border: 3px solid rgb(107 60 82 / 15%);
+        border-top-color: var(--color-primary);
+        border-radius: 50%;
+        animation: matterline-spin 850ms linear infinite;
+    }
+
+    @keyframes matterline-spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}
