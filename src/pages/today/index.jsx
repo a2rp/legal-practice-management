@@ -5,6 +5,13 @@ import { formatCurrency, formatDate, formatToday } from "../../utils/formatters"
 import styles from "./styles.module.css";
 
 const todayKey = () => new Date().toISOString().slice(0, 10);
+const timeValue = (value = "") => {
+    const match = value.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
+    if (!match) return 0;
+    let hours = Number(match[1]) % 12;
+    if (match[3].toUpperCase() === "PM") hours += 12;
+    return hours * 60 + Number(match[2]);
+};
 
 const formatElapsed = (seconds) => {
     const hours = Math.floor(seconds / 3600).toString().padStart(2, "0");
@@ -28,7 +35,7 @@ const TodayPage = ({
     const [selectedMatterId, setSelectedMatterId] = useState(matters[0]?.id ?? "");
     const today = todayKey();
     const todayEvents = useMemo(
-        () => events.filter((event) => event.date === today).sort((a, b) => a.time.localeCompare(b.time)),
+        () => events.filter((event) => event.date === today).sort((a, b) => timeValue(a.time) - timeValue(b.time)),
         [events, today],
     );
     const openMatters = matters.filter((matter) => matter.status !== "Closed").length;
