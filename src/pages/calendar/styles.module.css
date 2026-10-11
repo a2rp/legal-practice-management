@@ -1,0 +1,585 @@
+.page {
+    display: grid;
+    gap: 19px;
+
+    .pageHeader {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 18px;
+
+        h1 {
+            color: var(--color-ink);
+            font-family: var(--font-serif);
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+        }
+
+        p {
+            margin-top: 6px;
+            color: var(--color-muted);
+            font-size: 14px;
+        }
+    }
+
+    .newEventButton,
+    .agendaAdd {
+        display: inline-flex;
+        min-height: 42px;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 0 14px;
+        border: 1px solid var(--color-primary);
+        border-radius: 8px;
+        color: #fffaf4;
+        background: var(--color-primary);
+        font-size: 14px;
+        font-weight: 700;
+
+        svg { width: 17px; height: 17px; }
+
+        &:hover,
+        &:focus-visible {
+            border-color: var(--color-primary-dark);
+            background: var(--color-primary-dark);
+            box-shadow: 0 5px 15px rgb(79 43 61 / 18%);
+        }
+    }
+
+    .calendarToolbar {
+        display: flex;
+        min-height: 64px;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        padding: 10px 14px;
+        border: 1px solid var(--color-border);
+        border-radius: 11px;
+        background: var(--color-surface);
+
+        .monthControls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            h2 {
+                min-width: 158px;
+                color: var(--color-ink);
+                font-family: var(--font-serif);
+                font-size: 20px;
+                font-weight: 700;
+                text-align: center;
+            }
+
+            > button:not(.todayButton) {
+                display: grid;
+                width: 34px;
+                height: 34px;
+                place-items: center;
+                border: 1px solid var(--color-border);
+                border-radius: 7px;
+                color: #6f626c;
+                background: #fff;
+
+                svg { width: 16px; height: 16px; }
+
+                &:hover,
+                &:focus-visible {
+                    border-color: #bd9e8b;
+                    color: var(--color-primary);
+                    box-shadow: 0 3px 10px rgb(58 42 50 / 9%);
+                }
+            }
+
+            .todayButton {
+                min-height: 34px;
+                margin-left: 4px;
+                padding: 0 10px;
+                border: 1px solid #e2d7ce;
+                border-radius: 7px;
+                color: var(--color-primary);
+                background: #faf6f0;
+                font-size: 13px;
+                font-weight: 700;
+
+                &:hover,
+                &:focus-visible {
+                    border-color: #bd9e8b;
+                    box-shadow: 0 3px 10px rgb(58 42 50 / 9%);
+                }
+            }
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+
+            label {
+                display: flex;
+                min-height: 37px;
+                align-items: center;
+                gap: 7px;
+                padding: 0 9px;
+                border: 1px solid var(--color-border);
+                border-radius: 7px;
+                background: #fff;
+
+                &:focus-within {
+                    border-color: var(--color-primary);
+                    box-shadow: 0 0 0 3px rgb(107 60 82 / 9%);
+                }
+
+                & > *:first-child {
+                    color: #847983;
+                    font-size: 13px;
+                    font-weight: 600;
+                }
+
+                select {
+                    max-width: 190px;
+                    border: 0;
+                    outline: 0;
+                    color: #594b55;
+                    background: transparent;
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+
+    .calendarGrid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.5fr) minmax(300px, 0.78fr);
+        align-items: stretch;
+        gap: 17px;
+    }
+
+    .monthCard,
+    .agendaCard {
+        min-width: 0;
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        background: var(--color-surface);
+        box-shadow: 0 6px 19px rgb(40 33 42 / 4%);
+    }
+
+    .monthCard {
+        overflow: hidden;
+
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            min-height: 46px;
+            align-items: center;
+            border-bottom: 1px solid var(--color-border);
+            background: #f8f4ef;
+
+            span {
+                color: #7b7078;
+                font-size: 13px;
+                font-weight: 700;
+                text-align: center;
+            }
+        }
+
+        .daysGrid {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+        }
+
+        .dayCell {
+            position: relative;
+            display: flex;
+            min-width: 0;
+            min-height: 100px;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 4px;
+            padding: 7px 6px;
+            border: 0;
+            border-right: 1px solid #eee8e2;
+            border-bottom: 1px solid #eee8e2;
+            color: var(--color-ink);
+            background: #fffefa;
+            text-align: left;
+            transition: background 150ms ease, box-shadow 150ms ease;
+
+            &:nth-child(7n) { border-right: 0; }
+
+            &:hover,
+            &:focus-visible {
+                background: #fbf6f0;
+                box-shadow: inset 0 0 0 1px #cfae96;
+                outline-offset: -3px;
+            }
+
+            .dayNumber {
+                display: grid;
+                width: 27px;
+                height: 27px;
+                flex: 0 0 auto;
+                place-items: center;
+                border-radius: 50%;
+                color: #625761;
+                font-size: 13px;
+                font-weight: 650;
+            }
+
+            .eventMarker {
+                display: block;
+                overflow: hidden;
+                padding: 3px 5px;
+                border-left: 2px solid #8e647a;
+                border-radius: 4px;
+                color: #5a4854;
+                background: #f3eaf0;
+                font-size: 13px;
+                line-height: 1.25;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .kindClientcall,
+            .kindClientmeeting { border-color: #748b77; background: #edf2eb; }
+            .kindFilingdeadline { border-color: #ba875c; background: #f7efe4; }
+            .kindNegotiation { border-color: #76869b; background: #edf0f4; }
+            .kindInternal { border-color: #bd9a57; background: #f5f0df; }
+
+            .moreEvents {
+                color: #776c75;
+                font-size: 13px;
+            }
+        }
+
+        .outsideMonth {
+            background: #fbf9f6;
+
+            .dayNumber { color: #aaa1a5; }
+        }
+
+        .selectedDay {
+            background: #f9f1e9;
+            box-shadow: inset 0 0 0 2px #b98365;
+
+            .dayNumber {
+                color: #fff;
+                background: var(--color-primary);
+            }
+        }
+
+        .todayCell .dayNumber {
+            outline: 1px solid #bd8967;
+            outline-offset: 2px;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding: 13px 16px;
+            border-top: 1px solid var(--color-border);
+            background: #fbf9f5;
+
+            span {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                color: #786e76;
+                font-size: 13px;
+            }
+
+            i {
+                width: 9px;
+                height: 9px;
+                border-radius: 50%;
+            }
+
+            .courtDot { background: #8e647a; }
+            .clientDot { background: #748b77; }
+            .filingDot { background: #ba875c; }
+        }
+    }
+
+    .agendaCard {
+        display: flex;
+        flex-direction: column;
+        padding: 19px;
+
+        .agendaHeader {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #eee8e2;
+
+            p {
+                color: #847781;
+                font-size: 13px;
+                font-weight: 650;
+            }
+
+            h2 {
+                margin-top: 3px;
+                color: var(--color-ink);
+                font-family: var(--font-serif);
+                font-size: 21px;
+                font-weight: 700;
+                line-height: 1.2;
+            }
+
+            .agendaCount {
+                display: grid;
+                min-width: 29px;
+                height: 29px;
+                place-items: center;
+                border-radius: 7px;
+                color: #794f67;
+                background: #f3eaf0;
+                font-size: 13px;
+                font-weight: 750;
+            }
+        }
+
+        .filterNote {
+            margin-top: 10px;
+            color: #7b6d76;
+            font-size: 13px;
+        }
+
+        .eventList {
+            display: grid;
+            align-content: start;
+
+            .eventItem,
+            .eventDone {
+                display: grid;
+                grid-template-columns: 68px minmax(0, 1fr) 38px;
+                align-items: start;
+                gap: 10px;
+                padding: 14px 0;
+                border-bottom: 1px solid #eee8e2;
+
+                time {
+                    padding-top: 1px;
+                    color: var(--color-primary);
+                    font-size: 13px;
+                    font-weight: 700;
+                }
+
+                .eventContent {
+                    display: grid;
+                    min-width: 0;
+                    gap: 3px;
+
+                    strong,
+                    a,
+                    small {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+
+                    strong {
+                        color: var(--color-ink);
+                        font-size: 14px;
+                        font-weight: 700;
+                    }
+
+                    a {
+                        color: #755e6d;
+                        font-size: 13px;
+                        text-decoration: none;
+
+                        &:hover,
+                        &:focus-visible {
+                            color: var(--color-primary);
+                            box-shadow: none;
+                            text-decoration: none;
+                        }
+                    }
+
+                    small {
+                        color: #897e86;
+                        font-size: 13px;
+                    }
+                }
+
+                .eventActions {
+                    display: grid;
+                    gap: 4px;
+
+                    button {
+                        display: grid;
+                        width: 32px;
+                        height: 31px;
+                        place-items: center;
+                        border: 1px solid transparent;
+                        border-radius: 7px;
+                        color: #897d86;
+                        background: transparent;
+
+                        svg { width: 15px; height: 15px; }
+
+                        &:hover,
+                        &:focus-visible {
+                            border-color: #e1d5cb;
+                            color: var(--color-primary);
+                            background: #fff;
+                            box-shadow: 0 3px 10px rgb(58 42 50 / 8%);
+                        }
+                    }
+                }
+            }
+
+            .eventDone {
+                .eventContent strong { color: #837881; text-decoration: line-through; }
+            }
+        }
+
+        .emptyAgenda {
+            display: grid;
+            flex: 1;
+            align-content: center;
+            justify-items: center;
+            gap: 12px;
+            padding: 25px 10px;
+            text-align: center;
+
+            svg { width: 28px; height: 28px; color: #916b80; }
+            p { max-width: 240px; color: #80757e; font-size: 14px; line-height: 1.5; }
+        }
+
+        .agendaAdd {
+            width: 100%;
+            min-height: 40px;
+            margin-top: auto;
+            border-color: #e1d6cd;
+            color: var(--color-primary);
+            background: #faf6f0;
+            font-size: 13px;
+
+            &:hover,
+            &:focus-visible {
+                border-color: #bd9e8b;
+                color: var(--color-primary-dark);
+                background: #f5ece3;
+                box-shadow: 0 4px 12px rgb(58 42 50 / 8%);
+            }
+        }
+
+        .monthSummary {
+            margin-top: 12px;
+            color: #837781;
+            font-size: 13px;
+            text-align: center;
+        }
+    }
+
+    .eventForm {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px 13px;
+
+        label {
+            display: grid;
+            align-content: start;
+            gap: 6px;
+            color: #5b5058;
+            font-size: 13px;
+            font-weight: 650;
+        }
+
+        .fullField { grid-column: 1 / -1; }
+
+        input,
+        select {
+            width: 100%;
+            min-height: 42px;
+            padding: 0 10px;
+            border: 1px solid #ded5cd;
+            border-radius: 8px;
+            outline: 0;
+            color: var(--color-ink);
+            background: #fff;
+            font-size: 14px;
+
+            &:focus {
+                border-color: var(--color-primary);
+                box-shadow: 0 0 0 3px rgb(107 60 82 / 9%);
+            }
+
+            &::placeholder { color: #9b9097; }
+        }
+
+        .fieldError { color: #a43f44; font-size: 13px; font-weight: 500; }
+
+        @media (max-width: 520px) {
+            grid-template-columns: minmax(0, 1fr);
+            .fullField { grid-column: auto; }
+        }
+    }
+
+    .pageHeader {
+        @media (max-width: 650px) {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+    }
+
+    .calendarToolbar {
+        @media (max-width: 650px) {
+            align-items: stretch;
+            flex-direction: column;
+
+            .monthControls {
+                justify-content: space-between;
+
+                h2 { min-width: 0; }
+            }
+
+            .filters {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+
+                label { justify-content: space-between; }
+                select { max-width: 65%; }
+            }
+        }
+    }
+
+    .calendarGrid {
+        @media (max-width: 1050px) {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+
+    .dayCell {
+        @media (max-width: 620px) {
+            min-height: 76px;
+            padding: 5px 3px;
+
+            .eventMarker {
+                width: 100%;
+                height: 6px;
+                padding: 0;
+                border-radius: 999px;
+                color: transparent;
+                font-size: 0;
+            }
+
+            .moreEvents { display: none; }
+        }
+    }
+
+    .agendaCard {
+        @media (max-width: 620px) {
+            padding: 16px;
+        }
+    }
+}
