@@ -1,0 +1,87 @@
+.page {
+    display: grid;
+    min-height: 60vh;
+    align-content: center;
+    justify-items: center;
+    gap: 14px;
+    padding: 40px 20px;
+    text-align: center;
+
+    .icon {
+        display: grid;
+        width: 66px;
+        height: 66px;
+        place-items: center;
+        border: 1px solid #ddcbbd;
+        border-radius: 18px;
+        color: #76546a;
+        background: #f2e8e8;
+
+        svg { width: 30px; height: 30px; }
+    }
+
+    h1 {
+        max-width: 620px;
+        color: var(--color-ink);
+        font-family: var(--font-serif);
+        font-size: clamp(28px, 4vw, 38px);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+    }
+
+    p {
+        max-width: 520px;
+        color: var(--color-muted);
+        font-size: 15px;
+        line-height: 1.55;
+    }
+
+    .actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 9px;
+        margin-top: 5px;
+    }
+
+    .primaryLink,
+    .secondaryLink {
+        display: inline-flex;
+        min-height: 43px;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 0 14px;
+        border: 1px solid var(--color-primary);
+        border-radius: 8px;
+        color: #fffaf4;
+        background: var(--color-primary);
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+
+        svg { width: 16px; height: 16px; }
+
+        &:hover,
+        &:focus-visible {
+            border-color: var(--color-primary-dark);
+            background: var(--color-primary-dark);
+            box-shadow: 0 5px 15px rgb(79 43 61 / 18%);
+            text-decoration: none;
+        }
+    }
+
+    .secondaryLink {
+        border-color: var(--color-border);
+        color: var(--color-ink-soft);
+        background: #fffefa;
+
+        &:hover,
+        &:focus-visible {
+            border-color: #bd9e8b;
+            color: var(--color-primary);
+            background: #fffefa;
+            box-shadow: 0 4px 13px rgb(58 42 50 / 10%);
+        }
+    }
+}
