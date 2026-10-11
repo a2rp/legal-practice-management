@@ -216,7 +216,7 @@ const MatterFilePage = ({ matters, clients, events, timeEntries, invoices, onUpd
                 </Dialog>
             )}
             {deleteOpen && (
-                <Dialog cancelLabel="Keep matter" confirmLabel="Remove matter" danger description={`Remove ${matter.title} and its related tasks and scheduled dates from this browser session? This action cannot be undone.`} onClose={() => setDeleteOpen(false)} onConfirm={confirmDelete} title="Remove matter file" />
+                <Dialog cancelLabel="Keep matter" confirmLabel="Remove matter" danger description={`Remove ${matter.title} and its related tasks, scheduled dates, time entries, and invoices from this demo session? This action cannot be undone.`} onClose={() => setDeleteOpen(false)} onConfirm={confirmDelete} title="Remove matter file" />
             )}
         </div>
     );
