@@ -1,3 +1,9 @@
+@keyframes matterline-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .loading {
     display: grid;
     min-height: 280px;
@@ -12,9 +18,4 @@
         animation: matterline-spin 850ms linear infinite;
     }
 
-    @keyframes matterline-spin {
-        to {
-            transform: rotate(360deg);
-        }
-    }
 }
