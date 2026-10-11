@@ -1,0 +1,570 @@
+.page {
+    display: grid;
+    gap: 19px;
+
+    .pageHeader {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 18px;
+
+        h1 {
+            color: var(--color-ink);
+            font-family: var(--font-serif);
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+        }
+
+        p {
+            margin-top: 6px;
+            color: var(--color-muted);
+            font-size: 14px;
+        }
+    }
+
+    .addEntryButton,
+    .primaryButton {
+        display: inline-flex;
+        min-height: 42px;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 0 14px;
+        border: 1px solid var(--color-primary);
+        border-radius: 8px;
+        color: #fffaf4;
+        background: var(--color-primary);
+        font-size: 14px;
+        font-weight: 700;
+
+        svg { width: 17px; height: 17px; }
+
+        &:hover:not(:disabled),
+        &:focus-visible {
+            border-color: var(--color-primary-dark);
+            background: var(--color-primary-dark);
+            box-shadow: 0 5px 15px rgb(79 43 61 / 18%);
+        }
+
+        &:disabled { opacity: 0.52; }
+    }
+
+    .metricGrid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 13px;
+
+        article {
+            display: grid;
+            min-height: 109px;
+            align-content: center;
+            gap: 3px;
+            padding: 15px 18px;
+            border: 1px solid var(--color-border);
+            border-radius: 11px;
+            background: var(--color-surface);
+
+            span {
+                color: #81757d;
+                font-size: 13px;
+                font-weight: 600;
+            }
+
+            strong {
+                color: var(--color-ink);
+                font-size: 23px;
+                font-weight: 750;
+            }
+
+            small {
+                color: #897e86;
+                font-size: 13px;
+            }
+        }
+    }
+
+    .timerBanner {
+        display: flex;
+        min-height: 66px;
+        align-items: center;
+        gap: 12px;
+        padding: 11px 14px;
+        border: 1px solid #554451;
+        border-radius: 10px;
+        color: #fff8f0;
+        background: #362d38;
+
+        .timerIcon {
+            display: grid;
+            width: 37px;
+            height: 37px;
+            flex: 0 0 auto;
+            place-items: center;
+            border-radius: 9px;
+            color: #f0c397;
+            background: rgb(208 160 111 / 16%);
+
+            svg { width: 18px; height: 18px; }
+        }
+
+        > div {
+            display: grid;
+            min-width: 0;
+            flex: 1;
+            gap: 1px;
+
+            strong { color: #fff8f0; font-size: 14px; }
+            span { overflow: hidden; color: #d5c8d4; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
+        }
+
+        time {
+            color: #f8eee4;
+            font-size: 20px;
+            font-variant-numeric: tabular-nums;
+            font-weight: 700;
+        }
+
+        button {
+            min-height: 38px;
+            padding: 0 12px;
+            border: 1px solid #a97978;
+            border-radius: 7px;
+            color: #fff7f0;
+            background: #854c55;
+            font-size: 13px;
+            font-weight: 700;
+
+            &:hover,
+            &:focus-visible {
+                border-color: #c68c8b;
+                background: #9a5861;
+                box-shadow: 0 4px 12px rgb(0 0 0 / 18%);
+            }
+        }
+    }
+
+    .billingTabs {
+        display: flex;
+        gap: 6px;
+        padding: 5px;
+        border: 1px solid var(--color-border);
+        border-radius: 10px;
+        background: #ece7e1;
+
+        button {
+            display: inline-flex;
+            min-height: 42px;
+            align-items: center;
+            gap: 8px;
+            padding: 0 13px;
+            border: 1px solid transparent;
+            border-radius: 7px;
+            color: #756a73;
+            background: transparent;
+            font-size: 14px;
+            font-weight: 650;
+
+            svg { width: 16px; height: 16px; }
+
+            span {
+                display: grid;
+                min-width: 23px;
+                height: 22px;
+                place-items: center;
+                border-radius: 6px;
+                color: #756a73;
+                background: rgb(255 255 255 / 56%);
+                font-size: 13px;
+            }
+
+            &:hover,
+            &:focus-visible {
+                border-color: #ded3ca;
+                background: rgb(255 254 250 / 72%);
+                box-shadow: 0 3px 10px rgb(58 42 50 / 7%);
+            }
+        }
+
+        .activeTab {
+            border-color: #fffefa;
+            color: var(--color-primary-dark);
+            background: #fffefa;
+            box-shadow: 0 2px 7px rgb(40 33 42 / 7%);
+        }
+    }
+
+    .ledgerCard {
+        min-width: 0;
+        overflow: hidden;
+        border: 1px solid var(--color-border);
+        border-radius: 13px;
+        background: var(--color-surface);
+        box-shadow: 0 6px 20px rgb(40 33 42 / 4%);
+
+        .ledgerHeader {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 20px 20px 16px;
+
+            h2 {
+                color: var(--color-ink);
+                font-family: var(--font-serif);
+                font-size: 22px;
+                font-weight: 700;
+            }
+
+            p {
+                margin-top: 4px;
+                color: var(--color-muted);
+                font-size: 13px;
+            }
+
+            .ledgerActions {
+                display: flex;
+                flex: 0 0 auto;
+                gap: 8px;
+            }
+        }
+
+        .secondaryButton {
+            display: inline-flex;
+            min-height: 39px;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 0 11px;
+            border: 1px solid var(--color-border);
+            border-radius: 7px;
+            color: #655962;
+            background: #fff;
+            font-size: 13px;
+            font-weight: 650;
+
+            svg { width: 16px; height: 16px; }
+
+            &:hover,
+            &:focus-visible {
+                border-color: #bd9e8b;
+                color: var(--color-primary);
+                box-shadow: 0 4px 12px rgb(58 42 50 / 9%);
+            }
+        }
+
+        .primaryButton {
+            min-height: 39px;
+            padding: 0 11px;
+            font-size: 13px;
+        }
+
+        .filters {
+            display: flex;
+            min-height: 57px;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 18px;
+            border-top: 1px solid #eee8e2;
+            border-bottom: 1px solid #eee8e2;
+            background: #fbf9f5;
+
+            label {
+                display: flex;
+                min-height: 37px;
+                align-items: center;
+                gap: 7px;
+                padding: 0 9px;
+                border: 1px solid var(--color-border);
+                border-radius: 7px;
+                background: #fff;
+
+                &:focus-within {
+                    border-color: var(--color-primary);
+                    box-shadow: 0 0 0 3px rgb(107 60 82 / 9%);
+                }
+
+                span {
+                    color: #827781;
+                    font-size: 13px;
+                    font-weight: 650;
+                }
+
+                select {
+                    max-width: 230px;
+                    border: 0;
+                    outline: 0;
+                    color: #5c5059;
+                    background: transparent;
+                    font-size: 13px;
+                }
+
+            }
+
+            > span {
+                margin-left: auto;
+                color: #81747e;
+                font-size: 13px;
+            }
+        }
+
+        .tableWrap {
+            width: 100%;
+            overflow-x: auto;
+
+            table {
+                width: 100%;
+                min-width: 920px;
+                text-align: left;
+
+                thead {
+                    background: #f7f3ed;
+
+                    th {
+                        height: 44px;
+                        padding: 0 13px;
+                        color: #7b7078;
+                        font-size: 13px;
+                        font-weight: 700;
+                        white-space: nowrap;
+
+                        &:first-child { padding-left: 18px; }
+                        &:last-child { width: 90px; }
+                    }
+                }
+
+                tbody tr {
+                    border-top: 1px solid #eee8e2;
+                    transition: background 140ms ease;
+
+                    &:hover { background: #fdfbf8; }
+                }
+
+                tbody td {
+                    height: 65px;
+                    padding: 9px 13px;
+                    color: #665b64;
+                    font-size: 13px;
+                    white-space: nowrap;
+
+                    &:first-child { padding-left: 18px; }
+                }
+            }
+        }
+
+        .entryWork {
+            display: grid;
+            min-width: 210px;
+            gap: 2px;
+
+            strong,
+            span {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            strong { color: #50464f; font-size: 14px; font-weight: 700; }
+            span { color: #827780; font-size: 13px; }
+        }
+
+        .amount { color: #514650 !important; font-weight: 700; }
+        .invoiceId { color: #79536a !important; font-weight: 750; }
+
+        .unbilledStatus,
+        .invoicedStatus,
+        .invoiceStatus {
+            display: inline-flex;
+            min-height: 26px;
+            align-items: center;
+            padding: 0 8px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 650;
+        }
+
+        .unbilledStatus { color: #80623d; background: #f5efdf; }
+        .invoicedStatus { color: #586f60; background: #e9f1e8; }
+        .draft { color: #80623d; background: #f5efdf; }
+        .sent { color: #5c6c82; background: #edf0f4; }
+        .overdue { color: #9a4947; background: #faece7; }
+        .paid { color: #586f60; background: #e9f1e8; }
+
+        .rowActions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 3px;
+
+            button {
+                display: inline-flex;
+                min-width: 32px;
+                height: 31px;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+                padding: 0 6px;
+                border: 1px solid transparent;
+                border-radius: 7px;
+                color: #81747e;
+                background: transparent;
+                font-size: 13px;
+                font-weight: 650;
+
+                svg { width: 15px; height: 15px; }
+
+                &:hover:not(:disabled),
+                &:focus-visible {
+                    border-color: #e1d5cb;
+                    color: var(--color-primary);
+                    background: #fff;
+                    box-shadow: 0 3px 10px rgb(58 42 50 / 8%);
+                }
+
+                &:disabled { opacity: 0.4; }
+            }
+        }
+
+        .emptyLedger {
+            display: grid;
+            min-height: 270px;
+            align-content: center;
+            justify-items: center;
+            gap: 10px;
+            color: #80757e;
+            text-align: center;
+
+            > svg { width: 30px; height: 30px; color: #916b80; }
+            p { font-size: 14px; }
+
+            button {
+                min-height: 38px;
+                margin-top: 2px;
+                padding: 0 12px;
+                border: 1px solid #dfd2c8;
+                border-radius: 7px;
+                color: var(--color-primary);
+                background: #faf6f0;
+                font-size: 13px;
+                font-weight: 700;
+
+                &:hover,
+                &:focus-visible {
+                    border-color: #bd9e8b;
+                    box-shadow: 0 4px 12px rgb(58 42 50 / 8%);
+                }
+            }
+        }
+    }
+
+    .entryForm {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px 13px;
+
+        label {
+            display: grid;
+            align-content: start;
+            gap: 6px;
+            color: #5b5058;
+            font-size: 13px;
+            font-weight: 650;
+        }
+
+        .fullField { grid-column: 1 / -1; }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            min-height: 42px;
+            padding: 8px 10px;
+            border: 1px solid #ded5cd;
+            border-radius: 8px;
+            outline: 0;
+            color: var(--color-ink);
+            background: #fff;
+            font-size: 14px;
+
+            &:focus {
+                border-color: var(--color-primary);
+                box-shadow: 0 0 0 3px rgb(107 60 82 / 9%);
+            }
+
+            &::placeholder { color: #9b9097; }
+        }
+
+        textarea { min-height: 86px; line-height: 1.45; }
+        .fieldError { color: #a43f44; font-size: 13px; font-weight: 500; }
+
+        @media (max-width: 520px) {
+            grid-template-columns: minmax(0, 1fr);
+            .fullField { grid-column: auto; }
+        }
+    }
+
+    .srOnly {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        clip-path: inset(50%);
+    }
+
+    .pageHeader {
+        @media (max-width: 650px) {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+    }
+
+    .metricGrid {
+        @media (max-width: 760px) {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+
+    .ledgerCard {
+        .ledgerHeader {
+            @media (max-width: 700px) {
+                align-items: stretch;
+                flex-direction: column;
+
+                .ledgerActions { flex-wrap: wrap; }
+            }
+        }
+
+        .filters {
+            @media (max-width: 620px) {
+                align-items: stretch;
+                flex-direction: column;
+
+                label { justify-content: space-between; }
+                label select { max-width: 70%; flex: 1; text-align: right; }
+                > span { align-self: flex-end; }
+            }
+        }
+
+        .ledgerHeader,
+        .filters {
+            @media (max-width: 520px) {
+                padding-right: 14px;
+                padding-left: 14px;
+            }
+        }
+    }
+
+    .timerBanner {
+        @media (max-width: 520px) {
+            flex-wrap: wrap;
+
+            > div { flex-basis: calc(100% - 60px); }
+            time { margin-left: auto; }
+            button { margin-left: auto; }
+        }
+    }
+}
