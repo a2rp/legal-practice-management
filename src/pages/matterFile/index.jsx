@@ -3,7 +3,7 @@ import { FiArrowLeft, FiCalendar, FiCheck, FiClock, FiEdit2, FiFileText, FiPlus,
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Dialog from "../../components/dialog";
 import MatterForm from "../../components/matterForm";
-import { createId, formatCurrency, formatDate } from "../../utils/formatters";
+import { createId, formatCurrency, formatDate, todayKey } from "../../utils/formatters";
 import styles from "./styles.module.css";
 
 const MatterFilePage = ({ matters, clients, events, timeEntries, invoices, onUpdateMatter, onDeleteMatter, onToast }) => {
@@ -50,7 +50,7 @@ const MatterFilePage = ({ matters, clients, events, timeEntries, invoices, onUpd
             onToast("Enter a task before adding it to the file.", "error");
             return;
         }
-        const task = { id: createId("TSK"), title: taskTitle.trim(), due: taskDate || new Date().toISOString().slice(0, 10), done: false };
+        const task = { id: createId("TSK"), title: taskTitle.trim(), due: taskDate || todayKey(), done: false };
         changeMatter({ tasks: [...matter.tasks, task] }, "Task added to the matter file.");
         setTaskTitle("");
         setTaskDate("");

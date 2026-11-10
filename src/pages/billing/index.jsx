@@ -1,10 +1,9 @@
 import { useMemo, useState } from "react";
 import { FiClock, FiDownload, FiEdit2, FiFileText, FiPlus, FiTrash2 } from "react-icons/fi";
 import Dialog from "../../components/dialog";
-import { createId, downloadCsv, formatCurrency, formatDate } from "../../utils/formatters";
+import { createId, downloadCsv, formatCurrency, formatDate, todayKey } from "../../utils/formatters";
 import styles from "./styles.module.css";
 
-const todayKey = () => new Date().toISOString().slice(0, 10);
 const formatElapsed = (seconds) => {
     const hours = Math.floor(seconds / 3600).toString().padStart(2, "0");
     const minutes = Math.floor((seconds % 3600) / 60).toString().padStart(2, "0");

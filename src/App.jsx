@@ -7,10 +7,9 @@ import Footer from "./components/footer";
 import ScrollToTop from "./components/scrollToTop";
 import Toast from "./components/toast";
 import { createDemoData, getDateOffset } from "./data/demoData";
-import { createId } from "./utils/formatters";
+import { createId, todayKey } from "./utils/formatters";
 import styles from "./App.module.css";
 
-const todayKey = () => new Date().toISOString().slice(0, 10);
 const timeValue = (value = "") => {
     const match = value.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
     if (!match) return 0;

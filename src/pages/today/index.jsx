@@ -1,10 +1,9 @@
 import { useMemo, useState } from "react";
 import { FiArrowRight, FiBookOpen, FiCalendar, FiCheck, FiClock, FiPlay, FiStopCircle } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { formatCurrency, formatDate, formatToday } from "../../utils/formatters";
+import { formatCurrency, formatDate, formatToday, todayKey } from "../../utils/formatters";
 import styles from "./styles.module.css";
 
-const todayKey = () => new Date().toISOString().slice(0, 10);
 const timeValue = (value = "") => {
     const match = value.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
     if (!match) return 0;

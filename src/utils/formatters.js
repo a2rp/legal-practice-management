@@ -1,3 +1,7 @@
+export const toDateKey = (date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+
+export const todayKey = () => toDateKey(new Date());
+
 export const formatCurrency = (amount) => new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",

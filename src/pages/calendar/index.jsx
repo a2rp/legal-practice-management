@@ -2,12 +2,11 @@ import { useMemo, useState } from "react";
 import { FiArrowLeft, FiArrowRight, FiCalendar, FiCheck, FiEdit2, FiPlus, FiTrash2 } from "react-icons/fi";
 import { Link, useSearchParams } from "react-router-dom";
 import Dialog from "../../components/dialog";
-import { createId, formatDate } from "../../utils/formatters";
+import { createId, formatDate, toDateKey } from "../../utils/formatters";
 import styles from "./styles.module.css";
 
 const eventKinds = ["Court", "Client call", "Client meeting", "Filing deadline", "Negotiation", "Internal"];
-const dateKey = (date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
-const today = () => dateKey(new Date());
+const today = () => toDateKey(new Date());
 const timeValue = (value = "") => {
     const match = value.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
     if (!match) return 0;
@@ -195,7 +194,7 @@ const CalendarPage = ({ matters, events, onSaveEvent, onUpdateEvent, onDeleteEve
                     <div className={styles.weekdays}>{["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => <span key={day}>{day}</span>)}</div>
                     <div className={styles.daysGrid}>
                         {days.map((date) => {
-                            const key = dateKey(date);
+                            const key = toDateKey(date);
                             const dayEvents = filteredEvents.filter((event) => event.date === key);
                             const isCurrentMonth = date.getMonth() === monthDate.getMonth();
                             const isSelected = key === selectedDate;

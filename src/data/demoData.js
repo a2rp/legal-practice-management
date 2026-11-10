@@ -1,7 +1,9 @@
+import { toDateKey } from "../utils/formatters";
+
 const dateAtOffset = (offset) => {
     const date = new Date();
     date.setDate(date.getDate() + offset);
-    return date.toISOString().slice(0, 10);
+    return toDateKey(date);
 };
 
 export const createDemoData = () => {
